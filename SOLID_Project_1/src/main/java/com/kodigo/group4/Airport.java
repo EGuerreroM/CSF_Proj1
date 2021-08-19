@@ -6,8 +6,12 @@ public class Airport {
 
         //EmailSender email = new EmailSender();
         //email.sendEmail("hectorjmon@hotmail.com","None");
-        WeatherApp weather = new WeatherApp();
-        System.out.println(weather.weatherInformationRetriever("Comalapa,sv"));
+        //WeatherApp weather = new WeatherApp();
+        //System.out.println(weather.weatherInformationRetriever("Comalapa,sv"));
+
+        Menu airportMenu = new Menu();
+        airportMenu.runMenu();
+
     }
 
 
