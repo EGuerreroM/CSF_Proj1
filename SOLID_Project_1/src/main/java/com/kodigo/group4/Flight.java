@@ -18,5 +18,6 @@ public class Flight {
     private Date arrivalDate;
     private Date arrivalTime;
     private boolean landed;
+    
 
 }
