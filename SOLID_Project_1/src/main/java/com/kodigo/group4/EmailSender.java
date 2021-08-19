@@ -66,7 +66,7 @@ public class EmailSender {
             multipart.addBodyPart(messageBodyPart);
             // Attaching file
             messageBodyPart = new MimeBodyPart();
-            String filename = "/Users/hectormontano/IdeaProjects/CSF_Project_1/SOLID_Project_1/GeneratedFiles/Flights-112345.xlsx";
+            String filename = "/Users/hectormontano/IdeaProjects/CSF_Proj1/SOLID_Project_1/GeneratedFiles/Flights-112345.xlsx";
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("Flight(s) information - " + date +".xlsx");
