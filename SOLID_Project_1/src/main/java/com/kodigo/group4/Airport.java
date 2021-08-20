@@ -8,9 +8,17 @@ public class Airport {
         //email.sendEmail("hectorjmon@hotmail.com","None");
         //WeatherApp weather = new WeatherApp();
         //System.out.println(weather.weatherInformationRetriever("Comalapa,sv"));
+        boolean flag = false;
+        int selectedOption;
 
-        Menu airportMenu = new Menu();
-        airportMenu.runMenu();
+        while (!flag){
+
+            Menu airportMenu = new Menu();
+            selectedOption=airportMenu.selectOption();
+            flag=airportMenu.runMenu(selectedOption);
+
+        }
+
 
     }
 
