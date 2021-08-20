@@ -20,7 +20,6 @@ public class Flight {
     private String destinationCity;
     private String arrivalDate;
     private String arrivalTime;
-    private String planeStatus;
     private String incident;
     private String airline;
     private String aircraftType;

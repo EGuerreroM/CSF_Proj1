@@ -10,7 +10,7 @@ public class Menu {
     List<Flight> list = new ArrayList<>();
     int userOption;
     Scanner scanner = new Scanner(System.in);
-    String word;
+    String flightNumber;
     FlightHandler flightHandler = new FlightHandler();
     FileHandler fileHandler = new FileHandler();
 
@@ -65,15 +65,15 @@ public class Menu {
                 System.out.println("=======================================");
                 System.out.print("Please write the flight number to Update: ");
                 System.out.println("=======================================");
-                word = scanner.next();
-                if (flightHandler.verifyIfExist(list,word)){
+                flightNumber = scanner.next();
+                if (flightHandler.verifyIfExist(list,flightNumber)){
                     System.out.print("Type the new status: ");
                     String status = scanner.next();
                     System.out.print("Type the new Arrival date (dd/mm/yyyy): ");
                     String arrivalDate = scanner.next();
                     System.out.print("Type the new Arrival time (hh:mm:ss): ");
                     String arrivalTime = scanner.next();
-                    flightHandler.updateFlight(list,word,status,arrivalDate,arrivalTime);
+                    flightHandler.updateFlight(list,flightNumber,status,arrivalDate,arrivalTime);
                 }else {
                     System.out.println("Can not find the flight...");
                 }
@@ -81,12 +81,12 @@ public class Menu {
             case 6:
                 System.out.println("=======================================");
                 System.out.println("Please write the flight number to cancel: ");
-                word = scanner.next();
-                if (flightHandler.verifyIfExist(list,word)){
+                flightNumber = scanner.next();
+                if (flightHandler.verifyIfExist(list,flightNumber)){
                     System.out.println("Write the reason to cancel: ");
                     scanner.nextLine();
                     String reason = scanner.nextLine();
-                    flightHandler.cancelFlight(list,word,reason);
+                    flightHandler.cancelFlight(list,flightNumber,reason);
                 }else {
                     System.out.println("Can not find the flight...");
                 }
