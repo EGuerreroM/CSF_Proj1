@@ -1,0 +1,13 @@
+
+N	java:S106I"9Replace this use of System.out or System.err by a logger.(˜›“Ş
+S	java:S106K"9Replace this use of System.out or System.err by a logger.(‡ì»Íùÿÿÿÿ
+M	java:S106P"9Replace this use of System.out or System.err by a logger.(ñ›ù
+S	java:S106Q"9Replace this use of System.out or System.err by a logger.(à­ıÓüÿÿÿÿ
+P
+java:S1117g":Rename "flight" which hides the field declared at line 18.(ßğé 
+S	java:S106y"9Replace this use of System.out or System.err by a logger.(Çã¸¡ıÿÿÿÿ
+N	java:S106{"9Replace this use of System.out or System.err by a logger.(ï£á»
+d
+java:S2095S"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Œú
+`
+java:S2095T"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(¸™á…

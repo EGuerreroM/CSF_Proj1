@@ -1,10 +1,8 @@
 package com.kodigo.group4;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -19,9 +17,10 @@ public class FileHandler {
     List<Flight> flightList = new ArrayList<>();
     Flight flight;
     Random random = new Random(234);
+    String separator = System.getProperty("file.separator");
 
     public List<Flight> openFile(String fileName) {
-        String pathFile = "GeneratedFiles/" + fileName;
+        String pathFile = System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+ fileName;
         try (FileInputStream file = new FileInputStream(new File(pathFile))) {
 
             XSSFWorkbook book = new XSSFWorkbook(file);
@@ -69,7 +68,7 @@ public class FileHandler {
                 }
                 sb.append("\n");
             }
-            //System.out.println(sb.toString().split(" "));
+
         }   catch(IOException ex){
             System.out.println("the file could not open "+ex);
         }
@@ -81,7 +80,7 @@ public class FileHandler {
         System.out.println("===============================");
         System.out.println("Creating excel file...");
         try {
-            FileOutputStream fileOut = new FileOutputStream("GeneratedFiles/"+"Flights.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+"Flights.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet();
             //creating the headers
@@ -99,8 +98,7 @@ public class FileHandler {
             row.createCell(10).setCellValue("Arrival date");
             row.createCell(11).setCellValue("Arrival time");
             row.createCell(12).setCellValue("Incidents");
-            //get the list which u want
-            //List<Flight> flightList = getNamesList();
+
             int rowNum = 1;
             for (Flight flight : list ) {
                 Row row1 = sheet.createRow(rowNum++);
