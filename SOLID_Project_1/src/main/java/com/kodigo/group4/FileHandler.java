@@ -18,6 +18,7 @@ public class FileHandler {
     Flight flight;
     Random random = new Random(234);
     String separator = System.getProperty("file.separator");
+    WeatherApp weatherApp = new WeatherApp();
 
     public List<Flight> openFile(String fileName) {
         String pathFile = System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+ fileName;
@@ -31,10 +32,10 @@ public class FileHandler {
 
             StringBuilder sb = new StringBuilder();
             Row row;
-            int i = 1;
+            int i = 2;
             while (rowIterator.hasNext()) {
                 row = rowIterator.next();
-                if(row.getRowNum()==0){
+                if(row.getRowNum()==0 || row.getRowNum()==1){
                     continue; //just skip the rows if row number is 0 or 1
                 }
                 flight = new Flight();
@@ -83,8 +84,13 @@ public class FileHandler {
             FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+"Flights.xlsx");
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet();
+
+            //printing weather app
+            Row rowW = sheet.createRow(0);
+            rowW.createCell(0).setCellValue("Airport weather status: " + weatherApp.weatherInformationRetriever("Comalapa,sv"));
+
             //creating the headers
-            Row row = sheet.createRow(0);
+            Row row = sheet.createRow(1);
             row.createCell(0).setCellValue("Flight Number");
             row.createCell(1).setCellValue("Airline");
             row.createCell(2).setCellValue("Aircraft type");
@@ -99,7 +105,7 @@ public class FileHandler {
             row.createCell(11).setCellValue("Arrival time");
             row.createCell(12).setCellValue("Incidents");
 
-            int rowNum = 1;
+            int rowNum = 2;
             for (Flight flight : list ) {
                 Row row1 = sheet.createRow(rowNum++);
                 row1.createCell(0).setCellValue((flight.getFlightNumber()));
