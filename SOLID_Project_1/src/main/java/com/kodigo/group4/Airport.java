@@ -1,5 +1,9 @@
 package com.kodigo.group4;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Airport {
 
     public static void main(String[] args) {
@@ -11,16 +15,10 @@ public class Airport {
         boolean flag = false;
         int selectedOption;
 
+        Menu airportMenu = new Menu();
         while (!flag){
-
-            Menu airportMenu = new Menu();
             selectedOption=airportMenu.selectOption();
             flag=airportMenu.runMenu(selectedOption);
-
         }
-
-
     }
-
-
 }

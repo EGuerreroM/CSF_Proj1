@@ -16,15 +16,15 @@ public class EmailSender {
     private String recipientEmail;
     private String senderEmail = "aeropuertoelsalvador@outlook.com";
     private String senderEmailPassword = "aeropuerto123456";
-    private String filePath;
+    private String fileName;
     private Date date = new Date();
 
     public EmailSender() {
     }
 
-    public void sendEmail(String recipientEmail, String filePath){
+    public void sendEmail(String recipientEmail, String fileName){
         this.recipientEmail = recipientEmail;
-        this.filePath = filePath;
+        this.fileName = fileName;
         System.out.println("Initializing email...");
         Properties props = null;
         if (props == null) {
@@ -66,10 +66,10 @@ public class EmailSender {
             multipart.addBodyPart(messageBodyPart);
             // Attaching file
             messageBodyPart = new MimeBodyPart();
-            String filename = "/Users/hectormontano/IdeaProjects/CSF_Proj1/SOLID_Project_1/GeneratedFiles/Flights-112345.xlsx";
+            String filename = "GeneratedFiles/" + fileName + ".xlsx";
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName("Flight(s) information - " + date +".xlsx");
+            messageBodyPart.setFileName(filename);
             multipart.addBodyPart(messageBodyPart);
             // Send the complete message parts
             message.setContent(multipart);
