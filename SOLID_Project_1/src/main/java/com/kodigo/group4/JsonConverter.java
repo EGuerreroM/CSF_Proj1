@@ -14,7 +14,5 @@ public class JsonConverter {
                 str, new TypeToken<HashMap<String , Object>>(){}.getType()
         );
         return map;
-
-
     }
 }

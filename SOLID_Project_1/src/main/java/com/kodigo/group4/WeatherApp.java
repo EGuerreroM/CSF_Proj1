@@ -1,7 +1,6 @@
 package com.kodigo.group4;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,65 +11,59 @@ import java.util.Map;
 
 public class WeatherApp {
 
-    public static String weatherInformationRetriever(String currentLocation){
+    private String apiUrl;
+    private URLConnection apiConnection;
+    @Getter
+    private String weatherForecast;
 
-        final String API_KEY ="f67eee1617ff9f66cb0b6e2cddff552c";
-        String urlString = "http://api.openweathermap.org/data/2.5/weather?q="+currentLocation+"&appid="+API_KEY+"&units=metric";
 
+    public WeatherApp() {
+        this.apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=Comalapa,sv&appid=f67eee1617ff9f66cb0b6e2cddff552c&units=metric";
+        this.apiConnection = connectToApi();
+        this.weatherForecast = weatherInformation();
+    }
+
+    public URLConnection connectToApi() {
+        URL url;
+        URLConnection apiConnection = null;
 
         try {
-            // API connection section
-            StringBuilder result = new StringBuilder();
-            URL url = new URL(urlString);
-            //starting the connection with the Open Weather Map API by passing  the URL
-            URLConnection urlConnection = url.openConnection();
-
-            //Getting the Json output from the API
-            //Reading all lines and adding them to String
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            String readLine;
-            while ((readLine = reader.readLine())!=null){
-                result.append(readLine);
-
-            }
-            reader.close();
-
-            // String to Map section
-            resMap = mapConverter.jsonToMap(result.toString());
-            mainMap = mapConverter.jsonToMap(resMap.get("main").toString());
-            windMap = mapConverter.jsonToMap(resMap.get("wind").toString());
-
-            weatherDescription=resMap.get("weather").toString().split(",")[2].split("=")[1];
-
-            return weatherDescription+" temperature: "+ mainMap.get("temp")+" C° and "+windMap.get("deg")+"° wind";
-
-
+            url = new URL(apiUrl);
+            apiConnection = url.openConnection();
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return weatherDescription+" temperature: "+ mainMap.get("temp")+" C° and "+windMap.get("deg")+"° wind";
+        return apiConnection;
     }
 
-    @Getter
-    @Setter
-    private static Map<String, Object> weatherMap;
-    @Getter
-    @Setter
-    private static String airportWeatherStatus;
-    @Getter
-    @Setter
-    private static Map<String, Object> windMap;
-    @Getter
-    @Setter
-    private static Map<String, Object> mainMap;
-    @Getter
-    @Setter
-    private static Map<String, Object> resMap;
-    private static JsonConverter mapConverter;
-    private static String weatherDescription;
+    public String weatherInformation() {
+        StringBuilder result = new StringBuilder();
+        Map<String, Object> windMap;
+        Map<String, Object> mainMap;
+        Map<String, Object> resMap;
+        String weatherDescription;
+        BufferedReader reader;
+        String readLine;
 
+        try {
+            reader = new BufferedReader(new InputStreamReader(apiConnection.getInputStream()));
 
+            while ((readLine = reader.readLine()) != null) {
+                result.append(readLine);
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        resMap = JsonConverter.jsonToMap(result.toString());
+        mainMap = JsonConverter.jsonToMap(resMap.get("main").toString());
+        windMap = JsonConverter.jsonToMap(resMap.get("wind").toString());
+        weatherDescription = resMap.get("weather").toString().split(",")[2].split("=")[1];
+
+        return weatherDescription + " temperature: " + mainMap.get("temp") + " C° and " + windMap.get("deg") + "° wind";
+    }
 
 }

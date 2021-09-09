@@ -7,21 +7,22 @@ import java.io.File;
 import java.util.*;
 
 public class Menu {
-    List<Flight> list = new ArrayList<>();
+    //List<Flight> list = new ArrayList<>();
     int userOption;
     Scanner scanner = new Scanner(System.in);
     String flightNumber;
     FlightHandler flightHandler = new FlightHandler();
     FileHandler fileHandler = new FileHandler();
 
-    public int selectOption(){
-        boolean flag  = false;
+
+    public int selectOption() {
+        boolean flag = false;
 
         System.out.println("===============================");
         System.out.println("---------Flight System---------");
         System.out.println("===============================");
 
-        while (!flag){
+        while (!flag) {
 
             System.out.println("1. Enter flights manually");
             System.out.println("2. Enter flights through excel file");
@@ -43,53 +44,29 @@ public class Menu {
         return userOption;
     }
 
-    public  boolean runMenu(int option){
+    public boolean runMenu(int option) {
         boolean flag = false;
-        switch (option){
+        switch (option) {
             case 1:
-                list.add(flightHandler.addFlight());
+                flightHandler.addFlight();
                 break;
             case 2:
-                System.out.println("Write the file name (no extension): ");
+                /*System.out.println("Write the file name (no extension): ");
                 String fileName = scanner.next() + ".xlsx";
                 list = fileHandler.openFile(fileName);
-                //flightHandler.addFlightFromFile(list,fileName);
+                //flightHandler.addFlightFromFile(list,fileName);*/
                 break;
             case 3:
-                flightHandler.showFlight(list);
+                flightHandler.showFlight();
                 break;
             case 4:
-                fileHandler.createExcelFile(list);
+                //fileHandler.createExcelFile(list);
                 break;
             case 5:
-                System.out.println("=======================================");
-                System.out.print("Please write the flight number to Update: ");
-                System.out.println("=======================================");
-                flightNumber = scanner.next();
-                if (flightHandler.verifyIfExist(list,flightNumber)){
-                    System.out.print("Type the new status: ");
-                    String status = scanner.next();
-                    System.out.print("Type the new Arrival date (dd/mm/yyyy): ");
-                    String arrivalDate = scanner.next();
-                    System.out.print("Type the new Arrival time (hh:mm:ss): ");
-                    String arrivalTime = scanner.next();
-                    flightHandler.updateFlight(list,flightNumber,status,arrivalDate,arrivalTime);
-                }else {
-                    System.out.println("Can not find the flight...");
-                }
+                flightHandler.updateFlight();
                 break;
             case 6:
-                System.out.println("=======================================");
-                System.out.println("Please write the flight number to cancel: ");
-                flightNumber = scanner.next();
-                if (flightHandler.verifyIfExist(list,flightNumber)){
-                    System.out.println("Write the reason to cancel: ");
-                    scanner.nextLine();
-                    String reason = scanner.nextLine();
-                    flightHandler.cancelFlight(list,flightNumber,reason);
-                }else {
-                    System.out.println("Can not find the flight...");
-                }
+                flightHandler.cancelFlight();
                 break;
             case 7:
                 System.out.println("========================");
@@ -100,7 +77,7 @@ public class Menu {
                 System.out.println("Write the excel file name (no extension): ");
                 String file = scanner.next();
                 EmailSender emailSender = new EmailSender();
-                emailSender.sendEmail(email,file);
+                emailSender.sendEmail(email, file);
                 break;
             case 8:
                 System.out.println("Closing system...");
@@ -108,6 +85,7 @@ public class Menu {
                 break;
         }
         return flag;
+
     }
 
 }

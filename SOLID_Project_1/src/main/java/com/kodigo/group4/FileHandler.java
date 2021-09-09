@@ -87,7 +87,7 @@ public class FileHandler {
 
             //printing weather app
             Row rowW = sheet.createRow(0);
-            rowW.createCell(0).setCellValue("Airport weather status: " + weatherApp.weatherInformationRetriever("Comalapa,sv"));
+            rowW.createCell(0).setCellValue("Airport weather status: " + weatherApp.getWeatherForecast());
 
             //creating the headers
             Row row = sheet.createRow(1);

@@ -1,5 +1,8 @@
 package com.kodigo.group4;
 
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -7,12 +10,14 @@ import java.util.Scanner;
 public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, ICancelFlight{
     WeatherApp weatherApp = new WeatherApp();
     Scanner scanner = new Scanner(System.in);
+    @Getter
+    List<Flight> flightList = new ArrayList<>();
+    Headers header = new Headers();
+    String flightNumber;
 
     @Override
-    public Flight addFlight() {
-        System.out.println("===================================");
-        System.out.println("Please type the flight information:");
-        System.out.println("===================================");
+    public void addFlight() {
+        header.showAddFlightHeader();
         Flight flight = new Flight();
         System.out.print("Flight Number: ");
         flight.setFlightNumber(scanner.nextLine());
@@ -40,21 +45,13 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
         flight.setArrivalTime(scanner.nextLine());
         System.out.print("Any incident?: ");
         flight.setIncident(scanner.nextLine());
-
-        return flight;
+        flightList.add(flight);
     }
 
     @Override
-    public void showFlight(List<Flight> otherList) {
-        System.out.println("==================================================================================================================================");
-        System.out.println("*************************************************  showing flight data   **********************************************************");
-        System.out.println("==================================================================================================================================");
-        System.out.println();
-        System.out.println("Weather conditions of the airport: " + weatherApp.weatherInformationRetriever("Comalapa,sv"));
-        System.out.println();
-        System.out.println("==================================================================================================================================");
-        System.out.println("Flight Number - Airline - Aircraft - Status - Origin (Country/City) - Destination (Country/City) - Departure Date/Time - Arrival Date/Time - Incidents -");
-        Iterator<Flight> iterator = otherList.iterator();
+    public void showFlight() {
+        header.showFlightsHeader();
+        Iterator<Flight> iterator = flightList.iterator();
         while(iterator.hasNext()){
             Flight flight1 = iterator.next();
             System.out.println(
@@ -89,25 +86,48 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
     }
 
     @Override
-    public void updateFlight(List<Flight> otherList,String find,String status, String arrivalDate, String arrivalTime) {
-        Iterator<Flight> iterator = otherList.iterator();
+    public void updateFlight() {
+        Flight flight = new Flight();
+        header.showUpdateFlightHeader();
+        flightNumber = scanner.next();
+        if (verifyIfExist(flightList, flightNumber)) {
+            System.out.print("Type the new status: ");
+            flight.setStatus(scanner.next());
+            System.out.print("Type the new Arrival date (dd/mm/yyyy): ");
+            flight.setArrivalDate(scanner.next());
+            System.out.print("Type the new Arrival time (hh:mm:ss): ");
+            flight.setArrivalTime(scanner.next());
+        } else {
+            System.out.println("Can not find the flight...");
+        }
+        Iterator<Flight> iterator = flightList.iterator();
         while (iterator.hasNext()) {
             Flight flight1 = iterator.next();
-            if (flight1.getFlightNumber().equals(find)) {
-                flight1.setStatus(status);
-                flight1.setArrivalDate(arrivalDate);
-                flight1.setArrivalTime(arrivalTime);
+            if (flight1.getFlightNumber().equals(flightNumber)) {
+                flight1.setStatus(flight.getStatus());
+                flight1.setArrivalDate(flight.getArrivalDate());
+                flight1.setArrivalTime(flight.getArrivalTime());
             }
         }
         System.out.println("Flight updated successfully...");
     }
 
     @Override
-    public void cancelFlight(List<Flight> otherList, String find, String reason) {
-        Iterator<Flight> iterator = otherList.iterator();
+    public void cancelFlight() {
+        header.showCancelFlightHeader();
+        flightNumber = scanner.next();
+        String reason="";
+        if (verifyIfExist(flightList, flightNumber)) {
+            System.out.println("Write the reason to cancel: ");
+            scanner.nextLine();
+            reason = scanner.nextLine();
+        } else {
+            System.out.println("Can not find the flight...");
+        }
+        Iterator<Flight> iterator = flightList.iterator();
         while (iterator.hasNext()) {
             Flight flight1 = iterator.next();
-            if (flight1.getFlightNumber().equals(find)) {
+            if (flight1.getFlightNumber().equals(flightNumber)) {
                 flight1.setStatus("CANCELED");
                 flight1.setArrivalDate("--/--/----");
                 flight1.setArrivalTime("--:--:--");
