@@ -10,8 +10,7 @@ import java.util.List;
 public class Airport {
 
     public static void main(String[] args) {
-        WeatherApp app = new WeatherApp();
-        System.out.println(app.getWeatherForecast());
+        
         /*boolean flag = false;
         int selectedOption;
 
