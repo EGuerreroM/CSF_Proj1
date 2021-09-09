@@ -51,10 +51,8 @@ public class Menu {
                 flightHandler.addFlight();
                 break;
             case 2:
-                /*System.out.println("Write the file name (no extension): ");
-                String fileName = scanner.next() + ".xlsx";
-                list = fileHandler.openFile(fileName);
-                //flightHandler.addFlightFromFile(list,fileName);*/
+                FileHandler fileHandler = new FileHandler();
+                fileHandler.requestInformation();
                 break;
             case 3:
                 flightHandler.showFlight();
@@ -69,15 +67,9 @@ public class Menu {
                 flightHandler.cancelFlight();
                 break;
             case 7:
-                System.out.println("========================");
-                System.out.println("Send email.");
-                System.out.println("========================");
-                System.out.println("Write the email address (xxxx@gmail.com): ");
-                String email = scanner.next();
-                System.out.println("Write the excel file name (no extension): ");
-                String file = scanner.next();
-                EmailSender emailSender = new EmailSender();
-                emailSender.sendEmail(email, file);
+                EmailHandler handler = new EmailHandler(new Email(new FileFactory()));
+                Sender sender = new Sender(handler.requestEmailInformation());
+                sender.sendEmail();
                 break;
             case 8:
                 System.out.println("Closing system...");

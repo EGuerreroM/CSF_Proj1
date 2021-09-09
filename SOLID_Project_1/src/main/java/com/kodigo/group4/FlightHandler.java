@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, ICancelFlight{
     WeatherApp weatherApp = new WeatherApp();
     Scanner scanner = new Scanner(System.in);
-    @Getter
-    List<Flight> flightList = new ArrayList<>();
+    //FlightList flightDB = new FlightList();
+    //List<Flight> flightList = flightDB.getFlightList();
     Headers header = new Headers();
     String flightNumber;
 
@@ -45,13 +45,13 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
         flight.setArrivalTime(scanner.nextLine());
         System.out.print("Any incident?: ");
         flight.setIncident(scanner.nextLine());
-        flightList.add(flight);
+        FlightList.addFlightToList(flight);
     }
 
     @Override
     public void showFlight() {
         header.showFlightsHeader();
-        Iterator<Flight> iterator = flightList.iterator();
+        Iterator<Flight> iterator = FlightList.getFlightList().iterator();
         while(iterator.hasNext()){
             Flight flight1 = iterator.next();
             System.out.println(
@@ -90,7 +90,7 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
         Flight flight = new Flight();
         header.showUpdateFlightHeader();
         flightNumber = scanner.next();
-        if (verifyIfExist(flightList, flightNumber)) {
+        if (verifyIfExist(FlightList.getFlightList(), flightNumber)) {
             System.out.print("Type the new status: ");
             flight.setStatus(scanner.next());
             System.out.print("Type the new Arrival date (dd/mm/yyyy): ");
@@ -100,7 +100,7 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
         } else {
             System.out.println("Can not find the flight...");
         }
-        Iterator<Flight> iterator = flightList.iterator();
+        Iterator<Flight> iterator = FlightList.getFlightList().iterator();
         while (iterator.hasNext()) {
             Flight flight1 = iterator.next();
             if (flight1.getFlightNumber().equals(flightNumber)) {
@@ -117,14 +117,14 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
         header.showCancelFlightHeader();
         flightNumber = scanner.next();
         String reason="";
-        if (verifyIfExist(flightList, flightNumber)) {
+        if (verifyIfExist(FlightList.getFlightList(), flightNumber)) {
             System.out.println("Write the reason to cancel: ");
             scanner.nextLine();
             reason = scanner.nextLine();
         } else {
             System.out.println("Can not find the flight...");
         }
-        Iterator<Flight> iterator = flightList.iterator();
+        Iterator<Flight> iterator = FlightList.getFlightList().iterator();
         while (iterator.hasNext()) {
             Flight flight1 = iterator.next();
             if (flight1.getFlightNumber().equals(flightNumber)) {

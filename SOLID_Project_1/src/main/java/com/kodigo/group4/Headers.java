@@ -31,5 +31,16 @@ public class Headers {
         System.out.println("Please write the flight number to cancel: ");
     }
 
+    public void showRequestEmailInformationHeader(){
+        System.out.println("========================");
+        System.out.println("Send email.");
+        System.out.println("========================");
+    }
+
+    public void showAddInformationFileHeader(){
+        System.out.println("========================");
+        System.out.println("Upload a file.");
+        System.out.println("========================");
+    }
 
 }
