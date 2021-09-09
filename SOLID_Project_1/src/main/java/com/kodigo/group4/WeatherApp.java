@@ -32,7 +32,8 @@ public class WeatherApp {
             apiConnection = url.openConnection();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error while trying to open connection with forecast...");
+            //System.out.println(e.getMessage());
         }
 
         return apiConnection;
@@ -56,7 +57,8 @@ public class WeatherApp {
             reader.close();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error: getting weather forecast...");
+            //System.out.println(e.getMessage());
         }
         resMap = JsonConverter.jsonToMap(result.toString());
         mainMap = JsonConverter.jsonToMap(resMap.get("main").toString());

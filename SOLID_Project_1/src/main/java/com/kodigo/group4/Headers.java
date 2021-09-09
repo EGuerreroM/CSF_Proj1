@@ -22,7 +22,7 @@ public class Headers {
 
     public void showUpdateFlightHeader(){
         System.out.println("=======================================");
-        System.out.print("Please write the flight number to Update: ");
+        System.out.println("Please write the flight number to Update: ");
         System.out.println("=======================================");
     }
 

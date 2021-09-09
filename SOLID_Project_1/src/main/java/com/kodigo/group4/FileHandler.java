@@ -28,7 +28,8 @@ public class FileHandler {
         file.readFile(fileFactory.getFileName());
     }
     public void exportFile(){
-        System.out.println("Write file extension: ");
+        header.showExportFileHeader();
+        System.out.println("Write file extension (avoid dot): ");
         fileFactory.setExtension(scanner.next());
         IFile file = fileCreator.selectFileType(fileFactory.getExtension());
         file.createFile(FlightList.getFlightList());

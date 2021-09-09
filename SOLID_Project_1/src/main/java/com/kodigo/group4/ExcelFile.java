@@ -79,7 +79,7 @@ public class ExcelFile implements IFile{
 
             //printing weather app
             Row rowW = sheet.createRow(0);
-            rowW.createCell(0).setCellValue("Airport weather status: " /*+ weatherApp.weatherInformation()*/);
+            rowW.createCell(0).setCellValue("Airport weather status: " + weatherApp.getWeatherForecast());
 
             //creating the headers
             Row row = sheet.createRow(1);

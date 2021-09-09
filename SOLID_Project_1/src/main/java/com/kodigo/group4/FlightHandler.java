@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.spi.AbstractResourceBundleProvider;
 
 public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, ICancelFlight{
-    WeatherApp weatherApp = new WeatherApp();
+    //WeatherApp weatherApp = new WeatherApp();
     Scanner scanner = new Scanner(System.in);
     //FlightList flightDB = new FlightList();
     //List<Flight> flightList = flightDB.getFlightList();
@@ -98,7 +99,7 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
             System.out.print("Type the new Arrival time (hh:mm:ss): ");
             flight.setArrivalTime(scanner.next());
         } else {
-            System.out.println("Can not find the flight...");
+            System.out.println("Error: Can not find the flight...");
         }
         Iterator<Flight> iterator = FlightList.getFlightList().iterator();
         while (iterator.hasNext()) {
@@ -107,9 +108,9 @@ public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, IC
                 flight1.setStatus(flight.getStatus());
                 flight1.setArrivalDate(flight.getArrivalDate());
                 flight1.setArrivalTime(flight.getArrivalTime());
+                Notificacions.success("Flight Update");
             }
         }
-        System.out.println("Flight updated successfully...");
     }
 
     @Override
