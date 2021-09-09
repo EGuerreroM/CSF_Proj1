@@ -72,13 +72,14 @@ public class ExcelFile implements IFile{
         System.out.println("===============================");
         System.out.println("Creating excel file...");
         try {
-            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+"Flights.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.dir")+separator+"GeneratedFiles"+separator+"ExportedFlights"+Math.random()+".xlsx");
+
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet();
 
             //printing weather app
             Row rowW = sheet.createRow(0);
-            rowW.createCell(0).setCellValue("Airport weather status: " + weatherApp.weatherInformation());
+            rowW.createCell(0).setCellValue("Airport weather status: " /*+ weatherApp.weatherInformation()*/);
 
             //creating the headers
             Row row = sheet.createRow(1);

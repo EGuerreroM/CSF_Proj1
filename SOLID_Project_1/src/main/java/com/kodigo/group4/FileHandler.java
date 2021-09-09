@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class FileHandler {
@@ -25,5 +26,11 @@ public class FileHandler {
         fileFactory.setExtension(scanner.next());
         IFile file = fileCreator.selectFileType(fileFactory.getExtension());
         file.readFile(fileFactory.getFileName());
+    }
+    public void exportFile(){
+        System.out.println("Write file extension: ");
+        fileFactory.setExtension(scanner.next());
+        IFile file = fileCreator.selectFileType(fileFactory.getExtension());
+        file.createFile(FlightList.getFlightList());
     }
 }

@@ -51,14 +51,14 @@ public class Menu {
                 flightHandler.addFlight();
                 break;
             case 2:
-                FileHandler fileHandler = new FileHandler();
+
                 fileHandler.requestInformation();
                 break;
             case 3:
                 flightHandler.showFlight();
                 break;
             case 4:
-                //fileHandler.createExcelFile(list);
+                fileHandler.exportFile();
                 break;
             case 5:
                 flightHandler.updateFlight();
