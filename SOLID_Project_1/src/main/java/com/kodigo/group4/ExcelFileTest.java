@@ -16,10 +16,31 @@ class ExcelFileTest {
         excelFileUnderTest = new ExcelFile();
         excelFileUnderTest.weatherApp = mock(WeatherApp.class);
         excelFileUnderTest.flight = mock(Flight.class);
-        excelFileUnderTest.separator = System.getProperty("file.separator");
+        excelFileUnderTest.separator = "separator";
     }
 
+    @Test
+    void testReadFile() {
+        // Setup
 
+        // Run the test
+        excelFileUnderTest.readFile("filename");
+
+        // Verify the results
+        verify(excelFileUnderTest.flight).setFlightNumber("flightNumber");
+        verify(excelFileUnderTest.flight).setAirline("airline");
+        verify(excelFileUnderTest.flight).setAircraftType("aircraftType");
+        verify(excelFileUnderTest.flight).setStatus("status");
+        verify(excelFileUnderTest.flight).setOriginCountry("originCountry");
+        verify(excelFileUnderTest.flight).setOriginCity("originCity");
+        verify(excelFileUnderTest.flight).setDestinationCountry("destinationCountry");
+        verify(excelFileUnderTest.flight).setDestinationCity("destinationCity");
+        verify(excelFileUnderTest.flight).setDepartureDate("departureDate");
+        verify(excelFileUnderTest.flight).setDepartureTime("departureTime");
+        verify(excelFileUnderTest.flight).setArrivalDate("arrivalDate");
+        verify(excelFileUnderTest.flight).setArrivalTime("arrivalTime");
+        verify(excelFileUnderTest.flight).setIncident("incident");
+    }
 
     @Test
     void testCreateFile() {
