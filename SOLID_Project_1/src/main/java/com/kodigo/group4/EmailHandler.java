@@ -3,7 +3,7 @@ package com.kodigo.group4;
 import java.util.Scanner;
 
 public class EmailHandler {
-    Headers header = new Headers();
+    Header header = new Header();
     Scanner scanner = new Scanner(System.in);
     Email email;
 

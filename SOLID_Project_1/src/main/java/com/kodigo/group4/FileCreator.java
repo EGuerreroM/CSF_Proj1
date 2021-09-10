@@ -16,8 +16,7 @@ public class FileCreator extends FileAbstract{
                 //file = new WordFile();
                 break;
             default:
-                //file = null;
-                Notificacions.error("File Creator");
+                file = null;
         }
         return file;
     }

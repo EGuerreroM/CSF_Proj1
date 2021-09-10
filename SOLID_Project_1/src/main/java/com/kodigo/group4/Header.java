@@ -1,6 +1,12 @@
 package com.kodigo.group4;
 
-public class Headers {
+public class Header {
+
+    public void showMenuHeader(){
+        System.out.println("===============================");
+        System.out.println("---------Flight System---------");
+        System.out.println("===============================");
+    }
 
     public void showAddFlightHeader(){
         System.out.println("===================================");
