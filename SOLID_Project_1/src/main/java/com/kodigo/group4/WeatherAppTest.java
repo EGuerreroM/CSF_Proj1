@@ -30,5 +30,4 @@ class WeatherAppTest {
         // Verify the results
     }
 
-
 }
