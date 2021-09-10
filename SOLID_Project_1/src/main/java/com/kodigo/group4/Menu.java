@@ -11,9 +11,9 @@ public class Menu {
     FileHandler fileHandler = new FileHandler();
     Header header = new Header();
     public int selectOption() {
-        boolean flag = false;
+        boolean isAcceptedOption = false;
         header.showMenuHeader();
-        while (!flag) {
+        while (!isAcceptedOption) {
             System.out.println("1. Enter flights manually");
             System.out.println("2. Enter flights through excel file");
             System.out.println("3. Show list of flights");
@@ -25,7 +25,7 @@ public class Menu {
             try {
                 System.out.print("Select and option: ");
                 userOption = scanner.nextInt();
-                flag = true;
+                isAcceptedOption = true;
             } catch (InputMismatchException e) {
                 System.out.println("You must select an option. ");
                 scanner.next();

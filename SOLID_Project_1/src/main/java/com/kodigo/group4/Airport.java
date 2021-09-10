@@ -11,13 +11,13 @@ public class Airport {
 
     public static void main(String[] args) {
 
-        boolean flag = false;
+        boolean isExitOption = false;
         int selectedOption;
 
         Menu airportMenu = new Menu();
-        while (!flag){
+        while (!isExitOption){
             selectedOption=airportMenu.selectOption();
-            flag=airportMenu.runMenu(selectedOption);
+            isExitOption=airportMenu.runMenu(selectedOption);
         }
     }
 }
