@@ -3,8 +3,6 @@ package com.kodigo.group4;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 public class Email {
     @Setter @Getter
     private String recipientEmail;
@@ -17,11 +15,9 @@ public class Email {
     @Setter @Getter
     private String message;
     @Getter
-    private FileFactory file;
-    @Setter @Getter
-    private Date date = new Date();
+    private FileObject file;
 
-    public Email(FileFactory file){
+    public Email(FileObject file){
         this.senderEmail = "aeropuertoelsalvador@outlook.com";
         this.senderEmailPassword = "aeropuerto123456";
         this.file = file;
