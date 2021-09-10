@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter @Getter
-public class FileFactory {
+public class FileObject {
     private String fileName;
     private String extension;
 }

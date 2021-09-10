@@ -1,9 +1,5 @@
 package com.kodigo.group4;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
-import javax.mail.Flags;
-import java.io.File;
 import java.util.*;
 
 public class Menu {
@@ -67,7 +63,7 @@ public class Menu {
                 flightHandler.cancelFlight();
                 break;
             case 7:
-                EmailHandler handler = new EmailHandler(new Email(new FileFactory()));
+                EmailHandler handler = new EmailHandler(new Email(new FileObject()));
                 Sender sender = new Sender(handler.requestEmailInformation());
                 sender.sendEmail();
                 break;
