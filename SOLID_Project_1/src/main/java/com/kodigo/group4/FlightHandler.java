@@ -1,19 +1,15 @@
 package com.kodigo.group4;
 
-import lombok.Getter;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.spi.AbstractResourceBundleProvider;
 
 public class FlightHandler implements IAddFlight, IShowFlight, IUpdateFlight, ICancelFlight{
     //WeatherApp weatherApp = new WeatherApp();
     Scanner scanner = new Scanner(System.in);
     //FlightList flightDB = new FlightList();
     //List<Flight> flightList = flightDB.getFlightList();
-    Headers header = new Headers();
+    Header header = new Header();
     String flightNumber;
 
     @Override

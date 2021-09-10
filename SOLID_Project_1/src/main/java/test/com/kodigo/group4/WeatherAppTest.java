@@ -1,5 +1,6 @@
-package com.kodigo.group4;
+package test.com.kodigo.group4;
 
+import com.kodigo.group4.WeatherApp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

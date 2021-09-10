@@ -9,17 +9,11 @@ public class Menu {
     String flightNumber;
     FlightHandler flightHandler = new FlightHandler();
     FileHandler fileHandler = new FileHandler();
-
-
+    Header header = new Header();
     public int selectOption() {
         boolean flag = false;
-
-        System.out.println("===============================");
-        System.out.println("---------Flight System---------");
-        System.out.println("===============================");
-
+        header.showMenuHeader();
         while (!flag) {
-
             System.out.println("1. Enter flights manually");
             System.out.println("2. Enter flights through excel file");
             System.out.println("3. Show list of flights");
@@ -39,7 +33,6 @@ public class Menu {
         }
         return userOption;
     }
-
     public boolean runMenu(int option) {
         boolean flag = false;
         switch (option) {
@@ -47,7 +40,6 @@ public class Menu {
                 flightHandler.addFlight();
                 break;
             case 2:
-
                 fileHandler.requestInformation();
                 break;
             case 3:
@@ -73,7 +65,5 @@ public class Menu {
                 break;
         }
         return flag;
-
     }
-
 }
